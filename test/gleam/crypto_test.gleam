@@ -24,6 +24,22 @@ pub fn run_hmac_test() {
   >>)
 }
 
+pub fn run_hash_test() {
+  <<"Здравствуйте!":utf8>>
+  |> crypto.hash(crypto.Sha256, _)
+  |> should.equal(<<
+    146, 214, 164, 236, 192, 147, 44, 240, 21, 70, 210, 147, 95, 225, 60, 232, 184,
+    57, 186, 223, 210, 131, 54, 229, 75, 144, 114, 24, 108, 34, 65, 181,
+  >>)
+
+  "😵‍💫"
+  |> crypto.hash_string(crypto.Sha256, _)
+  |> should.equal(<<
+    81, 39, 32, 4, 190, 198, 248, 237, 222, 183, 49, 65, 53, 2, 64, 90, 171, 225,
+    120, 81, 161, 82, 128, 84, 190, 117, 119, 254, 167, 55, 68, 71,
+  >>)
+}
+
 pub fn secure_compare_test() {
   crypto.secure_compare(
     bit_string.from_string("ab"),

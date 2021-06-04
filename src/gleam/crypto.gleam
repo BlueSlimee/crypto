@@ -1,5 +1,6 @@
 //// Set of cryptographic functions.
 
+import gleam/string.{String}
 import gleam/bit_string.{BitString}
 import gleam/bitwise
 
@@ -23,6 +24,9 @@ pub type HashAlgorithm {
 //
 /// Computes a digest of the input binary.
 pub external fn hash(HashAlgorithm, BitString) -> BitString =
+  "crypto" "hash"
+
+pub external fn hash_string(HashAlgorithm, String) -> BitString =
   "crypto" "hash"
 
 type Hmac {
